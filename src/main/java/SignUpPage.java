@@ -24,7 +24,6 @@ public class SignUpPage extends PageObject {
     public void enterLogin(String userName){
         this.user.clear();
         this.user.sendKeys(userName);
-
     }
 
     public void enterPassword(String pass){

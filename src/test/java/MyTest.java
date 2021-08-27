@@ -5,7 +5,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
-public class MyTest extends FunctionalTest {
+public class MyTest{
 
     private WebDriver driver;
     private SignUpPage signUpPage;
