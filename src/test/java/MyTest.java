@@ -27,34 +27,38 @@ public class MyTest{
         signUpPage.enterPassword("AvYrybu");
 
         ReceiptPage receiptPage = signUpPage.submit();
+        System.out.println("Welcome: " + receiptPage.getManagerId());
         Assert.assertEquals("Guru99 Bank Manager HomePage", receiptPage.confirmationHeader());
+
+        receiptPage.logOut();
+        Assert.assertEquals("You Have Succesfully Logged Out!!", receiptPage.getLogOutAlert());
     }
 
-    @Test
+    @Test(priority = 1)
     public void invalidUser(){
         signUpPage.enterLogin("mngr");
         signUpPage.enterPassword("AvYrybu");
 
         ReceiptPage receiptPage = signUpPage.submit();
-        Assert.assertEquals("User or Password is not valid", receiptPage.getAlert());
+        Assert.assertEquals("User or Password is not valid", receiptPage.getInvalidAlert());
     }
 
-    @Test
+    @Test(priority = 2)
     public void invalidPassword(){
         signUpPage.enterLogin("mngr347475");
         signUpPage.enterPassword("AvYr");
 
         ReceiptPage receiptPage = signUpPage.submit();
-        Assert.assertEquals("User or Password is not valid", receiptPage.getAlert());
+        Assert.assertEquals("User or Password is not valid", receiptPage.getInvalidAlert());
     }
 
-    @Test
+    @Test(priority = 3)
     public void invalidUserAndPassword(){
         signUpPage.enterLogin("mngr");
         signUpPage.enterPassword("AvYr");
 
         ReceiptPage receiptPage = signUpPage.submit();
-        Assert.assertEquals("User or Password is not valid", receiptPage.getAlert());
+        Assert.assertEquals("User or Password is not valid", receiptPage.getInvalidAlert());
     }
 
     @AfterTest
