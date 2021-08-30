@@ -1,7 +1,9 @@
-import org.openqa.selenium.Alert;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
+
+import java.io.File;
+import java.io.IOException;
 
 public class ReceiptPage extends PageObject {
 
@@ -44,5 +46,17 @@ public class ReceiptPage extends PageObject {
         alert.accept();
 
         return logOutAlertMessage;
+    }
+
+    public void takeScreenshot(String fileName){
+        TakesScreenshot screenshot = (TakesScreenshot) driver;
+        File screenFile = screenshot.getScreenshotAs(OutputType.FILE);
+        File destinationFile = new File(fileName);
+
+        try {
+            FileUtils.copyFile(screenFile, destinationFile);
+        } catch (IOException e) {
+            System.out.println("Something went wrong with the screenshotting");
+        }
     }
 }

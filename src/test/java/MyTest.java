@@ -3,9 +3,10 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
+import org.testng.Reporter;
 import org.testng.annotations.*;
 
-@Listeners(ListenerTest.class)
+//@Listeners(ListenerTest.class)
 
 public class MyTest{
 
@@ -17,6 +18,7 @@ public class MyTest{
 
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
+
         driver.get("http://www.demo.guru99.com/V4/");
 
         signUpPage = new SignUpPage(driver);
@@ -32,7 +34,13 @@ public class MyTest{
         System.out.println("Welcome: " + receiptPage.getManagerId());
         Assert.assertEquals("Guru99 Bank Manager HomePage", receiptPage.confirmationHeader());
 
+        receiptPage.takeScreenshot("test-output\\loggedIn.jpg");
+
+        Reporter.log("I'm signed in.");
+
         receiptPage.logOut();
+
+        Reporter.log("I'm signed out");
         Assert.assertEquals("You Have Succesfully Logged Out!!", receiptPage.getLogOutAlert());
     }
 
