@@ -5,6 +5,8 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
+@Listeners(ListenerTest.class)
+
 public class MyTest{
 
     private WebDriver driver;
@@ -59,6 +61,12 @@ public class MyTest{
 
         ReceiptPage receiptPage = signUpPage.submit();
         Assert.assertEquals("User or Password is not valid", receiptPage.getInvalidAlert());
+    }
+
+    @Test(priority = 4)
+    public void TestToFail(){
+        System.out.println("This test is to be failed.");
+        Assert.fail();
     }
 
     @AfterTest
