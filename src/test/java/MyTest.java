@@ -6,7 +6,7 @@ import org.testng.Assert;
 import org.testng.Reporter;
 import org.testng.annotations.*;
 
-//@Listeners(ListenerTest.class)
+@Listeners(ListenerTest.class)
 
 public class MyTest{
 
@@ -32,14 +32,14 @@ public class MyTest{
 
         ReceiptPage receiptPage = signUpPage.submit();
         System.out.println("Welcome: " + receiptPage.getManagerId());
+
         Assert.assertEquals("Guru99 Bank Manager HomePage", receiptPage.confirmationHeader());
-
-        receiptPage.takeScreenshot("test-output\\loggedIn.jpg");
-
         Reporter.log("I'm signed in.");
 
-        receiptPage.logOut();
+        receiptPage.takeScreenshot("test-output\\loggedIn.jpg");
+        Reporter.log("Screenshot taken.");
 
+        receiptPage.logOut();
         Reporter.log("I'm signed out");
         Assert.assertEquals("You Have Succesfully Logged Out!!", receiptPage.getLogOutAlert());
     }
@@ -71,11 +71,11 @@ public class MyTest{
         Assert.assertEquals("User or Password is not valid", receiptPage.getInvalidAlert());
     }
 
-    @Test(priority = 4)
+/*    @Test(priority = 4)
     public void TestToFail(){
         System.out.println("This test is to be failed.");
         Assert.fail();
-    }
+    }*/
 
     @AfterTest
     public void closeBrowser(){
