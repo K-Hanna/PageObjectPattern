@@ -24,7 +24,7 @@ public class Parameterized{
         Assert.assertTrue(signUpPage.isInitialized());
     }
 
-    @Test(dataProvider = "CorrectData")
+    @Test(dataProvider = "GivenData", dataProviderClass = DataProviderClass.class)
     public void correctData(String user, String password){
         signUpPage.enterLogin(user);
         signUpPage.enterPassword(password);
@@ -36,7 +36,7 @@ public class Parameterized{
         Assert.assertEquals("You Have Succesfully Logged Out!!", receiptPage.getLogOutAlert());
     }
 
-    @Test(dataProvider = "IncorrectData")
+    @Test(dataProvider = "GivenData", dataProviderClass = DataProviderClass.class)
     public void incorrectData(String user, String password){
         signUpPage.enterLogin(user);
         signUpPage.enterPassword(password);
@@ -48,21 +48,5 @@ public class Parameterized{
     @AfterTest
     public void closeBrowser(){
         driver.close();
-    }
-
-    @DataProvider(name = "CorrectData")
-    public Object[][] getCorrectData(){
-        return new Object[][]{
-                        {"mngr347475", "AvYrybu"}
-                };
-    }
-
-    @DataProvider(name = "IncorrectData")
-    public Object[][] getIncorrectData(){
-        return new Object[][]{
-                        { "mngr347475", "aaa" },
-                        { "aaa", "AvYrybu" },
-                        { "bbb", "bbb" }
-                };
     }
 }

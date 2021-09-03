@@ -1,13 +1,25 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Suite">
-    <listeners>
-        <listener class-name="ListenerTest"/>
-    </listeners>
-
-    <test name="Test">
+<!DOCTYPE suite SYSTEM "http://beust.com/testng/testng-1.0.dtd" >
+<suite name = "test-parameter">
+    <test name = "Login to pass">
+        <groups>
+            <run>
+                <include name = "A" />
+            </run>
+        </groups>
         <classes>
-            <class name="MyTest"/>
+            <class
+                    name = "ParametrizedGroups" />
+        </classes>
+    </test>
+    <test name = "Login to fail">
+        <groups>
+            <run>
+                <include name = "B" />
+            </run>
+        </groups>
+        <classes>
+            <class
+                    name = "ParametrizedGroups" />
         </classes>
     </test>
 </suite>
